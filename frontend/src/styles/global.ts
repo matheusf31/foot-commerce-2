@@ -11,15 +11,13 @@ export default createGlobalStyle`
   }
 
   body {
-    /* background: #191924 url(${background}) no-repeat center top; */
-    background: #17181d;
-    color: #FFF;
+    background: #191924 url(${background}) no-repeat center top;
+    /* background: #17181d; */
     -webkit-font-smoothing: antialiased;
   }
 
   body, input, button {
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
+    font: 14px Roboto, sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6, strong {
