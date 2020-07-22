@@ -27,7 +27,6 @@ const Cart: React.FC = () => {
       <ProductTable>
         <thead>
           <tr>
-            {/* pq esses th vazios */}
             <th />
             <th>PRODUTO</th>
             <th>QTD</th>
