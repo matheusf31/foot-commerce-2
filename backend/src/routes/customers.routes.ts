@@ -1,20 +1,15 @@
 import { Router } from 'express';
-import { uuid } from 'uuidv4';
+
+import CreateCustomerService from '../services/CreateCustomerService';
 
 const customersRouter = Router();
 
-const customers = [];
-
-customersRouter.post('/', (request, response) => {
+customersRouter.post('/', async (request, response) => {
   const { name, email } = request.body;
 
-  const customer = {
-    id: uuid(),
-    name,
-    email,
-  };
+  const createCustomer = new CreateCustomerService();
 
-  customers.push(customer);
+  const customer = await createCustomer.execute({ name, email });
 
   return response.json(customer);
 });
