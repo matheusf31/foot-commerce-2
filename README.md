@@ -1,10 +1,6 @@
 <h1 align="center">
-    <img alt="GoStack" src=".github/logo.png" width="200px" />
+    Foot commerce 2
 </h1>
-
-<h3 align="center">
-  Foot commerce 2
-</h3>
 
 <blockquote align="center">“Não espere resultados brilhantes se suas metas não forem claras”!</blockquote>
 
