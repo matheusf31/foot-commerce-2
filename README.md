@@ -26,5 +26,7 @@ $ yarn
 
 $ sudo docker run --name lett_postgres -e POSTGRES_PASSWORD=docker -e POSTGRES_DB=foot_commerce -p 5434:5432 -d postgres:12
 
+$ yarn typeorm migration:run
+
 $ yarn dev:server
 ```
