@@ -1,13 +1,17 @@
 import React, { useState, useCallback, FormEvent } from 'react';
 import { MdKeyboardBackspace, MdEmail, MdPerson } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
+import { useToast } from '../../../hooks/toast';
 import api from '../../../services/api';
 import logo from '../../../assets/images/undraw-web-shopping.svg';
 
 import { Container, Content, InputContainer } from './styles';
 
 const SignUp: React.FC = () => {
+  const { addToast } = useToast();
+  const history = useHistory();
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [hasNameError, setHasNameError] = useState(false);
@@ -39,10 +43,20 @@ const SignUp: React.FC = () => {
           email,
         });
 
-        // msg de sucesso
+        addToast({
+          type: 'success',
+          title: 'Sucesso!',
+          description: 'Faça seu login.',
+        });
+
+        history.push('/');
       } catch (err) {
         setHasEmailError(true);
-        console.log(err.response.data.message);
+        addToast({
+          type: 'error',
+          title: 'Erro ao cadastrar!',
+          description: err.response.data.message,
+        });
       }
     },
     [name, email],
