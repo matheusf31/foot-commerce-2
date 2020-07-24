@@ -45,9 +45,6 @@ class CreateProductService {
       product => !existentProductsIds.includes(product.id),
     );
 
-    /**
-     * checkInexistentProducts conterá o primeiro produto que não existe
-     */
     if (checkInexistentProducts.length) {
       throw new AppError(
         `Não foi possível encontrar o produto ${checkInexistentProducts[0].id}`,

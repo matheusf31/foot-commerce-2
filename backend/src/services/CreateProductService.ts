@@ -22,7 +22,7 @@ class CreateProductService {
     quantity,
     image,
   }: IRequest): Promise<Product> {
-    const findProductWithSameTitle = await this.productsRepository.findProductWithSameTitle(
+    const findProductWithSameTitle = await this.productsRepository.findByTitle(
       title,
     );
 
