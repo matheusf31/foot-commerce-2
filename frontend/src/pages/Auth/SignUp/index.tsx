@@ -19,6 +19,9 @@ const SignUp: React.FC = () => {
     async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
+      setHasNameError(false);
+      setHasEmailError(false);
+
       if (!name) {
         setHasNameError(true);
         return;
@@ -35,9 +38,6 @@ const SignUp: React.FC = () => {
           name,
           email,
         });
-
-        setHasNameError(false);
-        setHasEmailError(false);
 
         // msg de sucesso
       } catch (err) {

@@ -1,5 +1,16 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { darken } from 'polished';
+
+const appearFromLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
 
 export const ProductList = styled.ul`
   display: grid;
@@ -7,12 +18,20 @@ export const ProductList = styled.ul`
   grid-gap: 20px;
   list-style: none;
 
+  animation: ${appearFromLeft} 1s;
+
   li {
     display: flex;
     flex-direction: column;
     background: #fff;
     border-radius: 10px;
     padding: 20px;
+
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
 
     img {
       align-self: center;

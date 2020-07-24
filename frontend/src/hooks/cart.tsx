@@ -11,6 +11,7 @@ interface ICart extends IProducts {
 
 interface ICartContextData {
   cart: ICart[];
+  clearCart(): void;
   handleAddToCart(product: IProducts): void;
   handleRemoveItemFromCart(productId: number): void;
   handleUpdateAmount(productId: number, productAmount: number): void;
@@ -93,10 +94,15 @@ const CartProvider: React.FC = ({ children }) => {
     [cart],
   );
 
+  const clearCart = useCallback(() => {
+    setCart([]);
+  }, []);
+
   return (
     <CartContext.Provider
       value={{
         cart,
+        clearCart,
         handleAddToCart,
         handleRemoveItemFromCart,
         handleUpdateAmount,

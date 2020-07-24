@@ -26,6 +26,7 @@
   "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
   "rules": {
     "react/jsx-one-expression-per-line": "off",
+    "@typescript-eslint/ban-types": "off",
     "react/jsx-curly-newline": "off",
     "jsx-a11y/control-has-associated-label": "off",
     "react/prop-types": "off",

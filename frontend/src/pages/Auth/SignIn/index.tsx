@@ -3,12 +3,14 @@ import { MdKeyboardTab, MdEmail } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
 import { useAuth } from '../../../hooks/auth';
+import { useToast } from '../../../hooks/toast';
 import logo from '../../../assets/images/undraw-web-shopping.svg';
 
 import { Container, Content, InputContainer } from './styles';
 
 const SignIn: React.FC = () => {
   const { signIn } = useAuth();
+  const { addToast } = useToast();
   const [email, setEmail] = useState('');
   const [hasError, setHasError] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -16,6 +18,7 @@ const SignIn: React.FC = () => {
   const handleFormSubmit = useCallback(
     async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
+      setHasError(false);
 
       if (!email) {
         setHasError(true);
@@ -23,15 +26,21 @@ const SignIn: React.FC = () => {
       }
 
       try {
-        signIn(email);
-
-        setHasError(false);
+        await signIn(email);
       } catch (err) {
         setHasError(true);
-        console.log(err.response.data.message);
+
+        addToast({
+          type: 'error',
+          title: 'Erro na autenticação!',
+          description: err.response.data.message,
+        });
+
+        // console.log(err.response.data.message);
+        // disparar toast
       }
     },
-    [email, signIn],
+    [email, signIn, addToast],
   );
 
   return (

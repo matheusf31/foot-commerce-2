@@ -7,7 +7,6 @@ import api from '../../services/api';
 import { formatPrice } from '../../utils/format';
 import { useCart } from '../../hooks/cart';
 
-// import { Container } from './styles';
 import { ProductList } from './styles';
 
 export interface IProducts {

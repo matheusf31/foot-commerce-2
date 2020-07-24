@@ -56,7 +56,7 @@ class CreateProductService {
 
     const findProductsWithNoQuantityAvailable = existentProducts.filter(
       product =>
-        existentProducts.filter(p => p.id === product.id)[0].quantity <
+        products.filter(p => p.id === product.id)[0].quantity >
         product.quantity,
     );
 
