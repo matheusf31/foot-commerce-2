@@ -1,20 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { MdShoppingBasket } from 'react-icons/md';
+import { MdShoppingBasket, MdPowerSettingsNew } from 'react-icons/md';
 
 import { useCart } from '../../hooks/cart';
-import { Container, Cart } from './styles';
+import { useAuth } from '../../hooks/auth';
+import { Container, Logo, Cart, Logout } from './styles';
 
 import logo from '../../assets/images/logo.png';
 
 const Header: React.FC = () => {
   const { cart } = useCart();
+  const { signOut } = useAuth();
 
   return (
     <Container>
-      <Link to="/">
+      <Logo to="/">
         <img src={logo} alt="Foot-commerce" />
-      </Link>
+      </Logo>
 
       <Cart to="/cart">
         <div>
@@ -26,6 +27,10 @@ const Header: React.FC = () => {
 
         <MdShoppingBasket size={36} color="#FFF" />
       </Cart>
+
+      <Logout onClick={signOut}>
+        <MdPowerSettingsNew size={36} color="red" style={{ marginLeft: 20 }} />
+      </Logout>
     </Container>
   );
 };

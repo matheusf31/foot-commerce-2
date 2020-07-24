@@ -1,8 +1,6 @@
-import { getRepository } from 'typeorm';
-
 import Product from '../entities/Product';
-// import ProductsRepository from '../repositories/ProductsRepository';
 import AppError from '../errors/AppError';
+import IProductsRepository from '../repositories/models/IProductsRepository';
 
 interface IRequest {
   title: string;
@@ -12,14 +10,11 @@ interface IRequest {
 }
 
 class CreateProductService {
-  /**
-   * Dependency inversion principle
-   */
-  // private productsRepository: ProductsRepository;
+  private productsRepository: IProductsRepository;
 
-  // constructor(productsRepository: ProductsRepository) {
-  //   this.productsRepository = productsRepository;
-  // }
+  constructor(productsRepository: IProductsRepository) {
+    this.productsRepository = productsRepository;
+  }
 
   public async execute({
     title,
@@ -27,26 +22,20 @@ class CreateProductService {
     quantity,
     image,
   }: IRequest): Promise<Product> {
-    const productsRepository = getRepository(Product);
-
-    const product = await productsRepository.create({
+    const findProductWithSameTitle = await this.productsRepository.findProductWithSameTitle(
       title,
-      price,
-      quantity,
-      image,
-    });
-
-    const findProductWithSameTitle = await productsRepository.findOne({
-      where: {
-        title,
-      },
-    });
+    );
 
     if (findProductWithSameTitle) {
       throw new AppError('Já existe um produto com este título.');
     }
 
-    await productsRepository.save(product);
+    const product = await this.productsRepository.create({
+      title,
+      price,
+      quantity,
+      image,
+    });
 
     return product;
   }

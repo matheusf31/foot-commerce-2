@@ -1,22 +1,49 @@
-import { EntityRepository, Repository } from 'typeorm';
+import { getRepository, Repository } from 'typeorm';
+
 import Product from '../../entities/Product';
+import IProductsRepository from '../models/IProductsRepository';
+import ICreateProductDTO from '../../dtos/ICreateProductDTO';
 
-interface ICreateAppointmentDTO {
-  title: string;
-  price: number;
-  image: string;
-}
+class ProductsRepository implements IProductsRepository {
+  private ormRepository: Repository<Product>;
 
-@EntityRepository(Product)
-class ProductsRepository extends Repository<Product> {
-  // public findAllProducts(): Product[] {
-  //   return this.products;
-  // }
-  // public create({ title, price, image }: ICreateAppointmentDTO): Product {
-  //   const product = new Product({ title, price, image });
-  //   this.products.push(product);
-  //   return product;
-  // }
+  constructor() {
+    this.ormRepository = getRepository(Product);
+  }
+
+  public async findProductWithSameTitle(
+    title: string,
+  ): Promise<Product | undefined> {
+    const product = this.ormRepository.findOne({
+      where: {
+        title,
+      },
+    });
+
+    return product;
+  }
+
+  public async findAllProducts(): Promise<Product[]> {
+    return this.ormRepository.find();
+  }
+
+  public async create({
+    title,
+    price,
+    quantity,
+    image,
+  }: ICreateProductDTO): Promise<Product> {
+    const product = this.ormRepository.create({
+      title,
+      price,
+      quantity,
+      image,
+    });
+
+    await this.ormRepository.save(product);
+
+    return product;
+  }
 }
 
 export default ProductsRepository;

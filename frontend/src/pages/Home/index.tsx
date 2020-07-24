@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { MdAddShoppingCart } from 'react-icons/md';
 
-import api from '../../services/api';
+import Header from '../../components/Header';
 
+import api from '../../services/api';
 import { formatPrice } from '../../utils/format';
 import { useCart } from '../../hooks/cart';
 
@@ -25,26 +26,30 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <ProductList>
-      {products.map(product => (
-        <li key={product.id}>
-          <img src={product.image} alt={product.title} />
+    <>
+      <Header />
 
-          <strong>{product.title}</strong>
-          <span>{formatPrice(product.price)}</span>
+      <ProductList>
+        {products.map(product => (
+          <li key={product.id}>
+            <img src={product.image} alt={product.title} />
 
-          <button type="button" onClick={() => handleAddToCart(product)}>
-            <div>
-              <MdAddShoppingCart size={16} color="#FFF" />
-              {cart.find(cartProduct => cartProduct.id === product.id)
-                ?.amount || 0}
-            </div>
+            <strong>{product.title}</strong>
+            <span>{formatPrice(product.price)}</span>
 
-            <span>ADICIONAR AO CARRINHO</span>
-          </button>
-        </li>
-      ))}
-    </ProductList>
+            <button type="button" onClick={() => handleAddToCart(product)}>
+              <div>
+                <MdAddShoppingCart size={16} color="#FFF" />
+                {cart.find(cartProduct => cartProduct.id === product.id)
+                  ?.amount || 0}
+              </div>
+
+              <span>ADICIONAR AO CARRINHO</span>
+            </button>
+          </li>
+        ))}
+      </ProductList>
+    </>
   );
 };
 

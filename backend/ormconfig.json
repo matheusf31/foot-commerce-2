@@ -6,7 +6,7 @@
   "password": "docker",
   "database": "foot_commerce",
   "entities": [
-    "./src/models/*.ts"
+    "./src/entities/*.ts"
   ],
   "migrations": [
     "./src/database/migrations/*.ts"

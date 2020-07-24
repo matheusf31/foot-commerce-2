@@ -11,7 +11,7 @@ export const ProductList = styled.ul`
     display: flex;
     flex-direction: column;
     background: #fff;
-    border-radius: 4px;
+    border-radius: 10px;
     padding: 20px;
 
     img {

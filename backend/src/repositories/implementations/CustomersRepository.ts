@@ -1,35 +1,34 @@
-import { EntityRepository, Repository } from 'typeorm';
+import { getRepository, Repository } from 'typeorm';
 import Customer from '../../entities/Customer';
 
 import ICustomersRepository from '../models/ICustomersRepository';
+import ICreateCustomerDTO from '../../dtos/ICreateCustomerDTO';
 
-interface ICreateCustomerDTO {
-  name: string;
-  email: string;
-}
+class CustomersRepository implements ICustomersRepository {
+  private ormRepository: Repository<Customer>;
 
-// SO L ID -> desconectar o typeorm do service
+  constructor() {
+    this.ormRepository = getRepository(Customer);
+  }
 
-@EntityRepository(Customer)
-class CustomersRepository extends Repository<Customer>
-  implements ICustomersRepository {
   public async findByEmail(email: string): Promise<Customer | undefined> {
-    const findCustomerWithSameEmail = await this.findOne({
+    const findCustomerWithSameEmail = await this.ormRepository.findOne({
       where: {
         email,
       },
+      select: ['id', 'name', 'email'],
     });
 
     return findCustomerWithSameEmail;
   }
 
-  // public create({ name, email }: ICreateCustomerDTO): Customer {
-  //   const customer = new Customer({ name, email });
+  public async create({ name, email }: ICreateCustomerDTO): Promise<Customer> {
+    const customer = await this.ormRepository.create({ name, email });
 
-  //   this.customers.push(customer);
+    this.ormRepository.save(customer);
 
-  //   return customer;
-  // }
+    return customer;
+  }
 }
 
 export default CustomersRepository;

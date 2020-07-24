@@ -1,19 +1,21 @@
-import { getCustomRepository } from 'typeorm';
-
 import Customer from '../entities/Customer';
-import CustomersRepository from '../repositories/CustomerRepository';
 
 import AppError from '../errors/AppError';
+import ICustomersRepository from '../repositories/models/ICustomersRepository';
 
 interface IRequest {
   email: string;
 }
 
 class CreateCustomerService {
-  public async execute({ email }: IRequest): Promise<Customer> {
-    const customersRepository = getCustomRepository(CustomersRepository);
+  private customersRepository: ICustomersRepository;
 
-    const findCustomer = await customersRepository.findByEmail(email);
+  constructor(customersRepository: ICustomersRepository) {
+    this.customersRepository = customersRepository;
+  }
+
+  public async execute({ email }: IRequest): Promise<Customer> {
+    const findCustomer = await this.customersRepository.findByEmail(email);
 
     if (!findCustomer) {
       throw new AppError('Não existe usuário com este email.');
