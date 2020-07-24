@@ -4,7 +4,9 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   Column,
+  OneToMany,
 } from 'typeorm';
+import OrdersProducts from './OrdersProducts';
 
 @Entity('products')
 class Product {
@@ -19,6 +21,9 @@ class Product {
 
   @Column('int')
   quantity: number;
+
+  @OneToMany(() => OrdersProducts, ordersProducts => ordersProducts.product)
+  order_products: OrdersProducts[];
 
   @Column()
   image: string;

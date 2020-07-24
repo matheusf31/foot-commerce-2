@@ -1,20 +1,10 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { shade } from 'polished';
 
 interface IInputContainer {
   hasError: boolean;
   isFocused: boolean;
 }
-
-// interface IInputName {
-//   hasError: boolean;
-//   isFocused: boolean;
-// }
-
-// interface IInputEmail {
-//   hasError: boolean;
-//   isFocused: boolean;
-// }
 
 export const Container = styled.div`
   height: 100vh;
@@ -24,8 +14,26 @@ export const Container = styled.div`
   justify-content: center;
 `;
 
+const appearFromRight = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
 export const Content = styled.div`
   width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  animation: ${appearFromRight} 1s;
 
   img {
     transition: transform 0.2s;
@@ -35,19 +43,14 @@ export const Content = styled.div`
     }
   }
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
   form {
     margin: 60px 0;
     width: 340px;
-    text-align: center;
 
     h1 {
       margin-bottom: 48px;
       color: #fff;
+      text-align: center;
     }
 
     button {
@@ -67,7 +70,7 @@ export const Content = styled.div`
     }
   }
 
-  a {
+  > a {
     color: #fff;
     display: block;
     text-decoration: none;
@@ -77,7 +80,7 @@ export const Content = styled.div`
     align-items: center;
 
     svg {
-      margin-right: 12px;
+      margin-left: 12px;
     }
 
     &:hover {
@@ -128,7 +131,3 @@ export const InputContainer = styled.div<IInputContainer>`
     }
   }
 `;
-
-// export const InputName = styled(InputContainer)``;
-
-// export const InputEmail = styled(InputContainer)``;

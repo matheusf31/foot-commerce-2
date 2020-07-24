@@ -11,6 +11,17 @@ class CustomersRepository implements ICustomersRepository {
     this.ormRepository = getRepository(Customer);
   }
 
+  public async findById(id: string): Promise<Customer | undefined> {
+    const findCustomer = await this.ormRepository.findOne({
+      where: {
+        id,
+      },
+      select: ['id', 'name', 'email'],
+    });
+
+    return findCustomer;
+  }
+
   public async findByEmail(email: string): Promise<Customer | undefined> {
     const findCustomerWithSameEmail = await this.ormRepository.findOne({
       where: {

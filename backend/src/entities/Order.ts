@@ -4,10 +4,12 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToOne,
+  OneToMany,
   JoinColumn,
 } from 'typeorm';
 
 import Customer from './Customer';
+import OrdersProducts from './OrdersProducts';
 
 @Entity('orders')
 class Order {
@@ -15,13 +17,13 @@ class Order {
   id: string;
 
   @OneToOne(() => Customer)
-  @JoinColumn({ name: 'customer_id ' })
+  @JoinColumn({ name: 'customer_id' })
   customer: Customer;
 
-  // @OneToMany(() => OrdersProducts, ordersProducts => ordersProducts.order, {
-  //   cascade: true,
-  // })
-  // order_products: OrdersProducts[];
+  @OneToMany(() => OrdersProducts, ordersProducts => ordersProducts.order, {
+    cascade: true,
+  })
+  order_products: OrdersProducts[];
 
   @CreateDateColumn()
   created_at: Date;
