@@ -39,4 +39,13 @@ $ yarn typeorm migration:run
 
 # Para rodar o server
 $ yarn dev:server
+
+---
+
+# Para parar o container
+$ sudo docker kill lett_postgres
+
+# Para deletar o container
+$ sudo docker rm lett_postgres
+
 ```
