@@ -5,7 +5,6 @@
   "username": "postgres",
   "password": "docker",
   "database": "foot_commerce",
-  "seeds": "src/database/seeds/*.ts",
   "entities": ["./src/entities/*.ts"],
   "migrations": ["./src/database/migrations/*.ts"],
   "cli": {
