@@ -23,7 +23,7 @@ $ yarn && yarn start
 
 $ cd .. && cd backend
 
-# Para instalar as dependências
+# Para instalar as dependências do backend
 $ yarn
 
 # Para criar o container e a tabela do banco de dados
