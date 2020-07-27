@@ -5,11 +5,8 @@ import {
   UpdateDateColumn,
   Column,
   OneToMany,
-  AfterLoad,
-  getRepository,
 } from 'typeorm';
 import OrdersProducts from './OrdersProducts';
-import { productsSeed } from '../database/seeds/product.seed';
 
 @Entity('products')
 class Product {
