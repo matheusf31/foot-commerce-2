@@ -12,7 +12,7 @@ const CreateOrderSuccess: React.FC = () => {
         <h3>Compra efetuada com sucesso!</h3>
 
         <HomeLink to="/">
-          <span>Voltar para a Home</span>
+          <span>VOLTAR PARA A HOME</span>
         </HomeLink>
       </Content>
     </Container>

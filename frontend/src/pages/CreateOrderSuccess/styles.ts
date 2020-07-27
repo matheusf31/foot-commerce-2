@@ -42,6 +42,6 @@ export const HomeLink = styled(Link)`
   }
 
   span {
-    color: #17181d;
+    color: #fff;
   }
 `;
