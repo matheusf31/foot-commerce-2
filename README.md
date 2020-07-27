@@ -29,7 +29,12 @@ $ yarn
 # Para criar o container e a tabela do banco de dados
 $ sudo docker run --name lett_postgres -e POSTGRES_PASSWORD=docker -e POSTGRES_DB=foot_commerce -p 5434:5432 -d postgres:12
 
-# Para rodar as migrations e popular o banco de dados com alguns produtos
+# Para rodar as migrations
+$ yarn typeorm migration:run
+
+# Para popular o banco de dados com produtos
+## Vá até o arquivo de migration: src/database/seeds/1595715099747-SeedProduct.ts e remova os comentários
+## Após remover os comentários rode novamente o seguinte comando
 $ yarn typeorm migration:run
 
 # Para rodar o server
