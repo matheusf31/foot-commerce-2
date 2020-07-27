@@ -5,12 +5,9 @@
   "username": "postgres",
   "password": "docker",
   "database": "foot_commerce",
-  "entities": [
-    "./src/entities/*.ts"
-  ],
-  "migrations": [
-    "./src/database/migrations/*.ts"
-  ],
+  "seeds": "src/database/seeds/*.ts",
+  "entities": ["./src/entities/*.ts"],
+  "migrations": ["./src/database/migrations/*.ts"],
   "cli": {
     "migrationsDir": "./src/database/migrations"
   }
