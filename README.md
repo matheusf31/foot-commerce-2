@@ -4,12 +4,15 @@
 
 <p align="center">
   <a href="#resultado">Resultado</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#crystal_ball-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#rocket-como-rodar">Como rodar</a>
 </p>
 
 ## Resultado
 
 <img src=".github/demo.gif" height="500">
+
+## :crystal_ball: Tecnologias
 
 ## :rocket: Como rodar
 
