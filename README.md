@@ -3,12 +3,12 @@
 </h1>
 
 <p align="center">
-  <a href="#resultado">Resultado</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#sparkles-resultado">Resultado</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#crystal_ball-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#rocket-como-rodar">Como rodar</a>
 </p>
 
-## Resultado
+## :sparkles: Resultado
 
 <img src=".github/demo.gif" height="500">
 
