@@ -14,6 +14,20 @@
 
 ## :crystal_ball: Tecnologias
 
+Em ambos eu utilizei Typescript, e para organização e padronização de código utilizei o Prettier e o Eslint
+
+### Frontend
+
+- ReactJS
+- React Router Dom
+- Styled Components
+
+### Backend
+
+- NodeJS
+- Express
+- Typeorm
+
 ## :rocket: Como rodar
 
 ```
